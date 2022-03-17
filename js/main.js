@@ -39,10 +39,12 @@ replayBtn.addEventListener('click', init)
 
 init();
 
-function renderMessage(numOfGuesses, winner){
+function renderMessage(numOfGuesses, winner, loser){
   
   if(winner){
-    return `Congrats you won!`
+    return 'Congrats you won!'
+  } else if (loser) {
+    return 'Uh oh, the hangman is dead. Try again.'
   }
 
   const msg = numOfGuesses === 1 ? `You have ${numOfGuesses} wrong guess` : `You have ${numOfGuesses} wrong guesses`
@@ -51,13 +53,20 @@ function renderMessage(numOfGuesses, winner){
 }
 
 function checkWinner(){
-
   if(guessWord === secretWord){
     return true
   } else {
     return false
   }
 }
+
+// function checkLoser() {
+//   if (wrongLetters.length === WRONG_GUESS_HUNG_COUNT) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 function init(e) {
   secretWord = WORDS[Math.floor(Math.random() * WORDS.length)]
