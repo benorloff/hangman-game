@@ -42,6 +42,11 @@ function init(e) {
   secretWord = WORDS[Math.floor(Math.random() * WORDS.length)]
   console.log(secretWord);
 
+  // remove button classes from previous game
+  letterBtns.forEach((node) => {
+    node.className.remove();
+  });
+
   // initialize empty string, then build a representation of the selected word
   guessWord = '';
 
@@ -71,6 +76,7 @@ function handleClick(e) {
       for (i = 0; i < secretWord.length; i++) {
         if(secretWord.charAt(i) === e.target.innerText) {
           newGuessWord += e.target.innerText;
+          e.target.className = 'valid-letter';
         } else {
           // Include the '_' or ' ' if the button clicked does not match
           newGuessWord += guessWord.charAt(i);
@@ -78,6 +84,9 @@ function handleClick(e) {
       }
   
       guessWord = newGuessWord;
+    } else {
+      console.log('char is NOT in secret word');
+      e.target.className = 'wrong-letter';
     }
     console.log(e.target.innerText);
     render();

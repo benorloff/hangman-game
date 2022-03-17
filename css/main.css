@@ -52,6 +52,7 @@ section button {
   color: grey;
   border-radius: 1vmin;
   outline: none;
+  cursor: pointer;
 }
 
 #msg {
