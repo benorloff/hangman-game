@@ -43,8 +43,8 @@ function init(e) {
   console.log(secretWord);
 
   // remove button classes from previous game
-  letterBtns.forEach((node) => {
-    node.className.remove();
+  letterBtns.forEach(node => {
+    node.classList.remove('wrong-letter', 'valid-letter');
   });
 
   // initialize empty string, then build a representation of the selected word
