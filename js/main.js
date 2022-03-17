@@ -39,8 +39,27 @@ replayBtn.addEventListener('click', init)
 
 init();
 
+function renderMessage(numOfGuesses, winner){
+  
+  if(winner){
+    return `Congrats you won!`
+  }
+
+  const msg = numOfGuesses === 1 ? `You have ${numOfGuesses} wrong guess` : `You have ${numOfGuesses} wrong guesses`
+
+  return msg
+}
+
+function checkWinner(){
+
+  if(guessWord === secretWord){
+    return true
+  } else {
+    return false
+  }
+}
+
 function init(e) {
-  console.log('init function is working')
   secretWord = WORDS[Math.floor(Math.random() * WORDS.length)]
   console.log(secretWord);
 
@@ -66,6 +85,7 @@ function render() {
   guessEl.innerText = guessWord;
   // Update the view representing the wrong letters
   gallowsEl.style.backgroundPositionX = `-${SPRITE_WIDTH * wrongLetters.length}vmin`
+  msgEl.innerText = renderMessage(wrongLetters.length, checkWinner());
 }
 
 function handleClick(e) {
