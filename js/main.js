@@ -37,6 +37,8 @@ document.querySelector('#letters').addEventListener('click', handleClick)
 
 replayBtn.addEventListener('click', init)
 
+init();
+
 function init(e) {
   console.log('init function is working')
   secretWord = WORDS[Math.floor(Math.random() * WORDS.length)]
@@ -62,6 +64,8 @@ function init(e) {
 function render() {
   // Show the guess word on the DOM
   guessEl.innerText = guessWord;
+  // Update the view representing the wrong letters
+  gallowsEl.style.backgroundPositionX = `-${SPRITE_WIDTH * wrongLetters.length}vmin`
 }
 
 function handleClick(e) {
@@ -87,6 +91,8 @@ function handleClick(e) {
     } else {
       console.log('char is NOT in secret word');
       e.target.className = 'wrong-letter';
+      // Add letter to wrongLetters array
+      wrongLetters.push(e.target.innerText);
     }
     console.log(e.target.innerText);
     render();
