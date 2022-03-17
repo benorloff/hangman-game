@@ -80,7 +80,7 @@ function handleClick(e) {
       for (i = 0; i < secretWord.length; i++) {
         if(secretWord.charAt(i) === e.target.innerText) {
           newGuessWord += e.target.innerText;
-          e.target.className = 'valid-letter';
+          e.target.classList.add('valid-letter');
         } else {
           // Include the '_' or ' ' if the button clicked does not match
           newGuessWord += guessWord.charAt(i);
@@ -90,9 +90,10 @@ function handleClick(e) {
       guessWord = newGuessWord;
     } else {
       console.log('char is NOT in secret word');
-      e.target.className = 'wrong-letter';
+      e.target.classList.add('wrong-letter');
       // Add letter to wrongLetters array
       wrongLetters.push(e.target.innerText);
+      msgEl.innerText = `You have ${wrongLetters.length} wrong guess${wrongLetters.length > 1 ? 'es' : ''}.`
     }
     console.log(e.target.innerText);
     render();
